@@ -1,7 +1,9 @@
 import datetime
 
-Today = datetime.date.today()
-Yesterday = Today + datetime.timedelta(days = 1)
 
-today = Today.strftime("%Y.%m.%d")
-tommorow = Yesterday.strftime("%Y.%m.%d")
+def today():
+    return datetime.date.today().strftime("%Y.%m.%d")
+
+
+def tomorrow():
+    return (datetime.date.today() + datetime.timedelta(days=1)).strftime("%Y.%m.%d")

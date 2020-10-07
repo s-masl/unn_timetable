@@ -38,3 +38,8 @@ def timeTable(date):
         return strlesson
     else:
         return 'В этот день нет пар или не корректный ввод.'
+
+
+def getInfo(message):
+    return f'{message.from_user.first_name}  {message.from_user.last_name}\n{message.from_user.username}\n'
+
