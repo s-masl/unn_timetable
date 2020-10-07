@@ -3,7 +3,7 @@ import requests
 
 def timeTable(date):
     link = 'https://portal.unn.ru/auth/index.php?login=yes&backurl=%2Fruz%2Fmain'
-    timeTableLink = f'https://portal.unn.ru/ruzapi/schedule/student/99415?start={date}&finish={date}&lng=1'
+    timeTableLink = f'https://portal.unn.ru/ruzapi/schedule/group/28655?start={date}&finish={date}&lng=1'
 
     data = {
         'AUTH_FORM': 'Y',
@@ -14,11 +14,6 @@ def timeTable(date):
     }
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36'
-    }
-
-    proxyDict = {
-        'http': "84.51.91.165:8080",
-        'https': "62.112.118.14:8080"
     }
 
     s = requests.session()
@@ -37,7 +32,7 @@ def timeTable(date):
             strlesson += l[0] + '\n' + l[1] + '\n' + l[2] + '-' + l[3] + '\n' + l[4] + ' ' + l[5] + '\n\n'
         return strlesson
     else:
-        return 'В этот день нет пар или не корректный ввод.'
+        return 'В этот день нет пар или некорректный ввод.'
 
 
 def getInfo(message):
