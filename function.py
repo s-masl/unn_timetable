@@ -1,9 +1,10 @@
 import requests
+import shelve
 
 
-def timeTable(date):
+def timeTable(date, group_id):
     link = 'https://portal.unn.ru/auth/index.php?login=yes&backurl=%2Fruz%2Fmain'
-    timeTableLink = f'https://portal.unn.ru/ruzapi/schedule/group/28655?start={date}&finish={date}&lng=1'
+    timeTableLink = f'https://portal.unn.ru/ruzapi/schedule/group/{group_id}?start={date}&finish={date}&lng=1'
 
     data = {
         'AUTH_FORM': 'Y',
@@ -37,4 +38,30 @@ def timeTable(date):
 
 def getInfo(message):
     return f'{message.from_user.first_name}  {message.from_user.last_name}\n{message.from_user.username}\n'
+
+
+def make_user(user_id, group_id):
+    with shelve.open(r'shelve\users') as users:
+        users[f"{user_id}"] = group_id
+
+
+def read_user(user_id):
+    with shelve.open(r'shelve\users') as users:
+        return users[user_id]
+
+
+def groupID_to_name(groupid):
+    return {
+        28659: '382003-0',
+        28655: '382003-1',
+        28656: '382003-2',
+        28657: '382003-3',
+        28658: '382003-4',
+        29799: '382003-1м',
+        29794: '382003-2м',
+        29798: '382003-3м',
+        29800: '382003-4м',
+        28713: '382003-в1',
+        28714: '382003-в2',
+    }[groupid]
 
