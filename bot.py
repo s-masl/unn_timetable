@@ -11,7 +11,6 @@ bot = telebot.TeleBot(config.TOKEN)
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.send_message(chat_id=config.info_id, text=f'{function.getInfo(message)}command: /start')
-    function.make_user(user_id=message.chat.id, group_id='28655')
     bot.send_message(chat_id=message.chat.id, text='Выберите вашу группу.', reply_markup=markup_inline)
 
 

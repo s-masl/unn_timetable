@@ -46,8 +46,11 @@ def make_user(user_id, group_id):
 
 
 def read_user(user_id):
-    with shelve.open(r'shelve\users') as users:
-        return users[user_id]
+    try:
+        with shelve.open(r'shelve\users') as users:
+            return users[user_id]
+    except KeyError:
+        return '28655'
 
 
 def groupID_to_name(groupid):
@@ -64,4 +67,3 @@ def groupID_to_name(groupid):
         28713: '382003-в1',
         28714: '382003-в2',
     }[groupid]
-
